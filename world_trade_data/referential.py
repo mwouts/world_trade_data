@@ -33,12 +33,11 @@ def get_referential(name, datasource=world_trade_data.defaults.DEFAULT_DATASOURC
         raise ValueError(msg)
 
     def deeper(key, ignore_if_missing=False):
-        nonlocal data_dict
         if key not in data_dict:
             if ignore_if_missing:
-                return
+                return data_dict
             raise KeyError('{} not in {}'.format(key, data_dict.keys()))
-        data_dict = data_dict[key]
+        return data_dict[key]
 
     if name == 'country':
         level1 = 'countries'
@@ -50,9 +49,9 @@ def get_referential(name, datasource=world_trade_data.defaults.DEFAULT_DATASOURC
         level1 = name + 's'
         level2 = name
 
-    deeper('wits:datasource')
-    deeper('wits:{}'.format(level1))
-    deeper('wits:{}'.format(level2))
+    data_dict = deeper('wits:datasource')
+    data_dict = deeper('wits:{}'.format(level1))
+    data_dict = deeper('wits:{}'.format(level2))
 
     for obs in data_dict:
         if 'wits:reporternernomenclature' in obs:
