@@ -4,3 +4,5 @@ pytest-cov==2.5.1
 codecov
 jupytext
 plotly
+nbconvert
+jupyter_client
