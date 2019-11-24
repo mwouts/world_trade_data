@@ -8,7 +8,7 @@
 [![Jupyter Notebook](https://img.shields.io/badge/Binder-Notebook-blue.svg)](
     https://mybinder.org/v2/gh/mwouts/world_trade_data/master?filepath=README.md)
 [![GitHub.io](https://img.shields.io/badge/GitHub-HTML-blue.svg)](https://mwouts.github.io/world_trade_data)
-<a class="github-button" href="https://github.com/mwouts/itables" data-icon="octicon-star" data-show-count="true" aria-label="Star mwouts/itables on GitHub">Star</a>
+<a class="github-button" href="https://github.com/mwouts/world_trade_data" data-icon="octicon-star" data-show-count="true" aria-label="Star mwouts/world_trade_data on GitHub">Star</a>
 
 This package is an implementation of the [World Integrated Trade Solution API](https://wits.worldbank.org/witsapiintro.aspx).
 Use this package to explore the [Trade and Tariff Data](https://wits.worldbank.org/) published by the [World Bank](https://www.worldbank.org/).
