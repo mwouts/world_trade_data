@@ -62,7 +62,7 @@ def get_referential(name, datasource=world_trade_data.defaults.DEFAULT_DATASOURC
 
     for col in table:
         if col == 'notes':
-            table[col] = table[col].apply(lambda note: '' if note is None else str(note))
+            table[col] = table[col].apply(lambda note: '' if note is None else note)
         if col.startswith('is') and not col.startswith('iso'):
             try:
                 table[col] = table[col].apply(true_or_false)
