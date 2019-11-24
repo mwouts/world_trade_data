@@ -1,0 +1,523 @@
+{
+  "header": {
+    "id": "DF_WITS_TradeStats_Trade",
+    "prepared": "2019-11-23T19:03:09",
+    "test": false,
+    "sender": {
+      "id": "WBG_WITS",
+      "name": "World Bank Group - WITS"
+    }
+  },
+  "dataSets": [
+    {
+      "action": "Information",
+      "series": {
+        "0:0:0:0:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              32320233.669,
+              0
+            ]
+          }
+        },
+        "0:0:0:1:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              55443721.912,
+              0
+            ]
+          }
+        },
+        "0:0:0:2:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              65897013.512,
+              0
+            ]
+          }
+        },
+        "0:0:0:3:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              7569838.277,
+              0
+            ]
+          }
+        },
+        "0:0:0:4:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              204018187.723,
+              0
+            ]
+          }
+        },
+        "0:0:0:5:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              199329480.65,
+              0
+            ]
+          }
+        },
+        "0:0:0:6:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              83148834.334,
+              0
+            ]
+          }
+        },
+        "0:0:0:7:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              14533811.774,
+              0
+            ]
+          }
+        },
+        "0:0:0:8:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              47465728.952,
+              0
+            ]
+          }
+        },
+        "0:0:0:9:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              114181778.954,
+              0
+            ]
+          }
+        },
+        "0:0:0:10:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              32048691.879,
+              0
+            ]
+          }
+        },
+        "0:0:0:11:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              80744753.926,
+              0
+            ]
+          }
+        },
+        "0:0:0:12:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              133411657.817,
+              0
+            ]
+          }
+        },
+        "0:0:0:13:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              701868861.882,
+              0
+            ]
+          }
+        },
+        "0:0:0:14:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              329721636.463,
+              0
+            ]
+          }
+        },
+        "0:0:0:15:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              305685957.736,
+              0
+            ]
+          }
+        },
+        "0:0:0:16:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              20344437.971,
+              0
+            ]
+          }
+        },
+        "0:0:0:17:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              221559764.212,
+              0
+            ]
+          }
+        },
+        "0:0:0:18:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              146177536.329,
+              0
+            ]
+          }
+        },
+        "0:0:0:19:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              204083592.231,
+              0
+            ]
+          }
+        },
+        "0:0:0:20:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              1876132818.877,
+              0
+            ]
+          }
+        },
+        "0:0:0:21:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              53725799.438,
+              0
+            ]
+          }
+        },
+        "0:0:0:22:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              122945118.424,
+              0
+            ]
+          }
+        },
+        "0:0:0:23:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              2407390189.46,
+              0
+            ]
+          }
+        },
+        "0:0:0:24:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              1062833183.614,
+              0
+            ]
+          }
+        },
+        "0:0:0:25:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              227576326.465,
+              0
+            ]
+          }
+        },
+        "0:0:0:26:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              356723000.752,
+              0
+            ]
+          }
+        },
+        "0:0:0:27:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              885929063.979999,
+              0
+            ]
+          }
+        },
+        "0:0:0:28:0": {
+          "attributes": [],
+          "annotations": [],
+          "observations": {
+            "0": [
+              837058331.288001,
+              0
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "structure": {
+    "name": "WITS TradeStats Trade",
+    "description": "Trade data such as total exports, number or products exported, exporting and importing partner countries and exported and imported product groups are available",
+    "dimensions": {
+      "dataset": [],
+      "series": [
+        {
+          "id": "FREQ",
+          "name": "Freq",
+          "keyPosition": 0,
+          "role": null,
+          "values": [
+            {
+              "id": "A",
+              "name": "Annual"
+            }
+          ]
+        },
+        {
+          "id": "REPORTER",
+          "name": "Reporter",
+          "keyPosition": 1,
+          "role": null,
+          "values": [
+            {
+              "id": "USA",
+              "name": "United States"
+            }
+          ]
+        },
+        {
+          "id": "PARTNER",
+          "name": "Partner",
+          "keyPosition": 2,
+          "role": null,
+          "values": [
+            {
+              "id": "WLD",
+              "name": "World"
+            }
+          ]
+        },
+        {
+          "id": "PRODUCTCODE",
+          "name": "ProductCode",
+          "keyPosition": 3,
+          "role": null,
+          "values": [
+            {
+              "id": "01-05_Animal",
+              "name": "Animal"
+            },
+            {
+              "id": "06-15_Vegetable",
+              "name": "Vegetable"
+            },
+            {
+              "id": "16-24_FoodProd",
+              "name": "Food Products"
+            },
+            {
+              "id": "25-26_Minerals",
+              "name": "Minerals"
+            },
+            {
+              "id": "27-27_Fuels",
+              "name": "Fuels"
+            },
+            {
+              "id": "28-38_Chemicals",
+              "name": "Chemicals"
+            },
+            {
+              "id": "39-40_PlastiRub",
+              "name": "Plastic or Rubber"
+            },
+            {
+              "id": "41-43_HidesSkin",
+              "name": "Hides and Skins"
+            },
+            {
+              "id": "44-49_Wood",
+              "name": "Wood"
+            },
+            {
+              "id": "50-63_TextCloth",
+              "name": "Textiles and Clothing"
+            },
+            {
+              "id": "64-67_Footwear",
+              "name": "Footwear"
+            },
+            {
+              "id": "68-71_StoneGlas",
+              "name": "Stone and Glass"
+            },
+            {
+              "id": "72-83_Metals",
+              "name": "Metals"
+            },
+            {
+              "id": "84-85_MachElec",
+              "name": "Mach and Elec"
+            },
+            {
+              "id": "86-89_Transport",
+              "name": "Transportation"
+            },
+            {
+              "id": "90-99_Miscellan",
+              "name": "Miscellaneous"
+            },
+            {
+              "id": "AgrRaw",
+              "name": "Agricultural Raw Materials"
+            },
+            {
+              "id": "Chemical",
+              "name": "Chemical"
+            },
+            {
+              "id": "Food",
+              "name": "Food"
+            },
+            {
+              "id": "Fuels",
+              "name": "Fuel"
+            },
+            {
+              "id": "manuf",
+              "name": "Manufactures"
+            },
+            {
+              "id": "OresMtls",
+              "name": "Ores and Metals"
+            },
+            {
+              "id": "Textiles",
+              "name": "Textiles"
+            },
+            {
+              "id": "Total",
+              "name": "All Products"
+            },
+            {
+              "id": "Transp",
+              "name": "Machinery and Transport Equipment"
+            },
+            {
+              "id": "UNCTAD-SoP1",
+              "name": "Raw materials"
+            },
+            {
+              "id": "UNCTAD-SoP2",
+              "name": "Intermediate goods"
+            },
+            {
+              "id": "UNCTAD-SoP3",
+              "name": "Consumer goods"
+            },
+            {
+              "id": "UNCTAD-SoP4",
+              "name": "Capital goods"
+            }
+          ]
+        },
+        {
+          "id": "INDICATOR",
+          "name": "Indicator",
+          "keyPosition": 4,
+          "role": null,
+          "values": [
+            {
+              "id": "MPRT-TRD-VL",
+              "name": "Import Trade Value (US$ Thousand)"
+            }
+          ]
+        }
+      ],
+      "observation": [
+        {
+          "id": "TIME_PERIOD",
+          "name": "Year",
+          "keyPosition": 3,
+          "role": "time",
+          "values": [
+            {
+              "start": "2017-01-01T00:00:00",
+              "end": "2017-12-31T00:00:00",
+              "id": "2017",
+              "name": "2017"
+            }
+          ]
+        }
+      ]
+    },
+    "attributes": {
+      "dataset": [],
+      "series": [],
+      "observation": [
+        {
+          "id": "DATASOURCE",
+          "name": "DataSource",
+          "role": null,
+          "values": [
+            {
+              "id": "WITS-CMT",
+              "name": "WITS - UNSD Comtrade"
+            }
+          ]
+        }
+      ]
+    },
+    "annotations": []
+  }
+}
