@@ -6,3 +6,4 @@ jupytext
 plotly
 nbconvert
 jupyter_client
+ipykernel
