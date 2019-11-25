@@ -21,7 +21,7 @@ setup(
     description='World Integrated Trade Solution (WITS) API in Python',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/mwouts/wits',
+    url='https://github.com/mwouts/world_trade_data',
     packages=find_packages(exclude=['tests']),
     tests_require=['pytest'],
     install_requires=['pandas', 'requests', 'xmltodict'],
