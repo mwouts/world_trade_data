@@ -2,8 +2,10 @@
 
 import logging
 import requests
+import json
 import pandas as pd
 import world_trade_data.defaults
+import world_trade_data.referential as ref
 
 logging.basicConfig()
 LOGGER = logging.getLogger(__name__)
@@ -65,6 +67,23 @@ def _get_data(reporter, partner, product, year, datasource, name_or_id, **kwargs
             'product': product,
             'year': year,
             'datasource': datasource}
+
+    filters = {}
+
+    def update_country_arg(key, value):
+        if value == 'world':
+            args[key] = 'wld'
+        elif value == 'regions':
+            countries = ref.get_countries(datasource=datasource)
+            args[key] = countries.query('grouptype=="Region" & countrycode!="000"').index.tolist()
+        elif value == 'countries':
+            args[key] = 'all'
+            countries = ref.get_countries(datasource=datasource)
+            filters[key] = countries.query('isgroup=="No"').index.tolist()
+
+    update_country_arg('reporter', reporter)
+    update_country_arg('partner', partner)
+
     args.update(kwargs)
     list_args = []
 
@@ -79,14 +98,23 @@ def _get_data(reporter, partner, product, year, datasource, name_or_id, **kwargs
     if ('all' in reporter.lower() and 'all' in partner.lower()) or sum(['all' in args[k] for k in args]) >= 3:
         LOGGER.warning(LIMITATIONS)
 
-    response = requests.get('http://wits.worldbank.org/API/V1/SDMX/V21/{}?format=JSON'
-                            .format('/'.join(list_args)))
-    response.raise_for_status()
-    data = response.json()
-    return _wits_data_to_df(data, name_or_id=name_or_id)
+    url = 'http://wits.worldbank.org/API/V1/SDMX/V21/{}?format=JSON'.format('/'.join(list_args))
+    response = requests.get(url)
+    try:
+        response.raise_for_status()
+    except requests.HTTPError as err:
+        raise requests.HTTPError('{} while requesting {}'.format(str(err), url))
+    try:
+        data = response.json()
+    except json.decoder.JSONDecodeError as err:
+
+        raise requests.HTTPError('{} while parsing {} from {}'.format(str(err), response.content, url))
+    table = _wits_data_to_df(data, name_or_id=name_or_id, filters=filters)
+
+    return table
 
 
-def _wits_data_to_df(data, value_name='Value', name_or_id='id'):
+def _wits_data_to_df(data, value_name='Value', name_or_id='id', filters=None):
     observation = data['structure']['attributes']['observation']
     levels = data['structure']['dimensions']['series']
     obs_levels = data['structure']['dimensions']['observation']
@@ -111,6 +139,19 @@ def _wits_data_to_df(data, value_name='Value', name_or_id='id'):
 
         observations = series[i]['observations']
         for obs in observations:
+            # Only retain the observations that match the filter
+            if filters is not None:
+                skip = False
+                for level, j in zip(levels, loc):
+                    level_name = level['name'].lower()
+                    if level_name not in filters:
+                        continue
+                    if level['values'][j]['id'] not in filters[level_name]:
+                        skip = True
+                        break
+                if skip:
+                    continue
+
             for level, j in zip(levels, loc):
                 all_observations[level['name']].append(level['values'][j][name_or_id])
 
