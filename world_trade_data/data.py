@@ -1,8 +1,8 @@
 """WITS Data: indicators and tariffs"""
 
+import json
 import logging
 import requests
-import json
 import pandas as pd
 import world_trade_data.defaults
 import world_trade_data.referential as ref
@@ -84,6 +84,11 @@ def _get_data(reporter, partner, product, year, datasource, name_or_id, **kwargs
     update_country_arg('reporter', reporter)
     update_country_arg('partner', partner)
 
+    if product == 'sectors':
+        products = ref.get_products(datasource=datasource)
+        args['product'] = 'all'
+        filters['product'] = products.loc[(products.grouptype == 'Sector') & (products.index != 'Total')].index.tolist()
+
     args.update(kwargs)
     list_args = []
 
@@ -144,6 +149,8 @@ def _wits_data_to_df(data, value_name='Value', name_or_id='id', filters=None):
                 skip = False
                 for level, j in zip(levels, loc):
                     level_name = level['name'].lower()
+                    if level_name == 'productcode':
+                        level_name = 'product'
                     if level_name not in filters:
                         continue
                     if level['values'][j]['id'] not in filters[level_name]:
