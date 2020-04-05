@@ -79,8 +79,11 @@ def _get_data(reporter, partner, product, year, datasource, name_or_id, **kwargs
     if ('all' in reporter.lower() and 'all' in partner.lower()) or sum(['all' in args[k] for k in args]) >= 3:
         LOGGER.warning(LIMITATIONS)
 
-    response = requests.get('http://wits.worldbank.org/API/V1/SDMX/V21/{}?format=JSON'
-                            .format('/'.join(list_args)))
+    url = 'http://wits.worldbank.org/API/V1/SDMX/V21/{}?format=JSON'.format('/'.join(list_args))
+    try:
+        response = requests.get(url)
+    except requests.exceptions.RequestException as err:
+        raise requests.exceptions.RequestException('While requesting {}, an error occured: {}'.format(url, err))
     response.raise_for_status()
     data = response.json()
     return _wits_data_to_df(data, name_or_id=name_or_id)
