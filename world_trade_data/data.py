@@ -33,7 +33,7 @@ def get_tariff_reported(reporter,
                         year=world_trade_data.defaults.DEFAULT_YEAR,
                         name_or_id='name'):
     """Tariffs (reported)"""
-    return _get_data(reporter, partner, product, year,
+    return _get_data(reporter, partner, product, year, value_name='Rate',
                      datatype='reported', datasource='trn', name_or_id=name_or_id)
 
 
@@ -43,7 +43,7 @@ def get_tariff_estimated(reporter,
                          year=world_trade_data.defaults.DEFAULT_YEAR,
                          name_or_id='name'):
     """Tariffs (estimated)"""
-    return _get_data(reporter, partner, product, year,
+    return _get_data(reporter, partner, product, year,  value_name='Rate',
                      datatype='aveestimated', datasource='trn', name_or_id=name_or_id)
 
 
@@ -59,7 +59,7 @@ def get_indicator(indicator,
                      indicator=indicator, datasource=datasource, name_or_id=name_or_id)
 
 
-def _get_data(reporter, partner, product, year, datasource, name_or_id, **kwargs):
+def _get_data(reporter, partner, product, year, datasource, name_or_id, value_name='Value', **kwargs):
     args = {'reporter': reporter,
             'partner': partner,
             'product': product,
@@ -83,7 +83,7 @@ def _get_data(reporter, partner, product, year, datasource, name_or_id, **kwargs
                             .format('/'.join(list_args)))
     response.raise_for_status()
     data = response.json()
-    return _wits_data_to_df(data, name_or_id=name_or_id)
+    return _wits_data_to_df(data, name_or_id=name_or_id, value_name=value_name)
 
 
 def _wits_data_to_df(data, value_name='Value', name_or_id='id'):
