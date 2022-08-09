@@ -92,7 +92,7 @@ def _wits_data_to_df(data, value_name='Value', name_or_id='id'):
     obs_levels = data['structure']['dimensions']['observation']
     series = data['dataSets'][0]['series']
 
-    index_names = [l['name'] for l in levels] + [l['name'] for l in obs_levels]
+    index_names = [level['name'] for level in levels] + [obs_level['name'] for obs_level in obs_levels]
     column_names = [value_name] + [o['name'] for o in observation]
 
     all_observations = {value_name: []}
