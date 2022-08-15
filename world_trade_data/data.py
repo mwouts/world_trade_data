@@ -1,6 +1,8 @@
 """WITS Data: indicators and tariffs"""
 
 import logging
+import warnings
+
 import requests
 import pandas as pd
 import world_trade_data.defaults
@@ -83,7 +85,13 @@ def _get_data(reporter, partner, product, year, datasource, name_or_id, is_tarif
                             .format('/'.join(list_args)))
     response.raise_for_status()
     data = response.json()
-    return _wits_data_to_df(data, name_or_id=name_or_id, is_tariff=is_tariff)
+    df = _wits_data_to_df(data, name_or_id=name_or_id, is_tariff=is_tariff)
+    if is_tariff and not len(df):
+        warnings.warn("""Did you know? The reporter-partner combination only yields results
+ if the two countries have a preferential trade agreement (PTA).
+ Otherwise, all other tariffs to all non-PTA countries
+ are found if one enters "000" in partner.""")
+    return df
 
 
 def _wits_data_to_df(data, value_name='Value', is_tariff=False, name_or_id='id'):

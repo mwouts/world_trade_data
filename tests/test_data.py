@@ -45,7 +45,7 @@ def test_get_tariff_estimated():
     assert df.Value.dtype == np.float64
 
 
-def test_get_tariff_estimated_3():
+def test_get_tariff_estimated_issue_3():
     df = get_tariff_estimated(reporter='840', partner='124', product='all', year='2012')
     assert df.Value.dtype == np.float64
     assert len(df.index) > 100
