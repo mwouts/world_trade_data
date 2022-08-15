@@ -1,6 +1,8 @@
 """WITS Data: indicators and tariffs"""
 
 import logging
+import warnings
+
 import requests
 import pandas as pd
 import world_trade_data.defaults
@@ -33,7 +35,7 @@ def get_tariff_reported(reporter,
                         year=world_trade_data.defaults.DEFAULT_YEAR,
                         name_or_id='name'):
     """Tariffs (reported)"""
-    return _get_data(reporter, partner, product, year,
+    return _get_data(reporter, partner, product, year, is_tariff=True,
                      datatype='reported', datasource='trn', name_or_id=name_or_id)
 
 
@@ -43,7 +45,7 @@ def get_tariff_estimated(reporter,
                          year=world_trade_data.defaults.DEFAULT_YEAR,
                          name_or_id='name'):
     """Tariffs (estimated)"""
-    return _get_data(reporter, partner, product, year,
+    return _get_data(reporter, partner, product, year,  is_tariff=True,
                      datatype='aveestimated', datasource='trn', name_or_id=name_or_id)
 
 
@@ -59,7 +61,7 @@ def get_indicator(indicator,
                      indicator=indicator, datasource=datasource, name_or_id=name_or_id)
 
 
-def _get_data(reporter, partner, product, year, datasource, name_or_id, **kwargs):
+def _get_data(reporter, partner, product, year, datasource, name_or_id, is_tariff=False, **kwargs):
     args = {'reporter': reporter,
             'partner': partner,
             'product': product,
@@ -83,16 +85,22 @@ def _get_data(reporter, partner, product, year, datasource, name_or_id, **kwargs
                             .format('/'.join(list_args)))
     response.raise_for_status()
     data = response.json()
-    return _wits_data_to_df(data, name_or_id=name_or_id)
+    df = _wits_data_to_df(data, name_or_id=name_or_id, is_tariff=is_tariff)
+    if is_tariff and not len(df):
+        warnings.warn("""Did you know? The reporter-partner combination only yields results
+ if the two countries have a preferential trade agreement (PTA).
+ Otherwise, all other tariffs to all non-PTA countries
+ are found if one enters "000" in partner.""")
+    return df
 
 
-def _wits_data_to_df(data, value_name='Value', name_or_id='id'):
+def _wits_data_to_df(data, value_name='Value', is_tariff=False, name_or_id='id'):
     observation = data['structure']['attributes']['observation']
     levels = data['structure']['dimensions']['series']
     obs_levels = data['structure']['dimensions']['observation']
     series = data['dataSets'][0]['series']
 
-    index_names = [l['name'] for l in levels] + [l['name'] for l in obs_levels]
+    index_names = [level['name'] for level in levels] + [obs_level['name'] for obs_level in obs_levels]
     column_names = [value_name] + [o['name'] for o in observation]
 
     all_observations = {value_name: []}
@@ -106,7 +114,7 @@ def _wits_data_to_df(data, value_name='Value', name_or_id='id'):
 
         # When loading tariffs, product is at depth 3, but levels say it's at depth 4
         # - So we invert the two levels
-        if value_name == 'Rate':
+        if is_tariff:
             loc[2], loc[3] = loc[3], loc[2]
 
         observations = series[i]['observations']

@@ -58,6 +58,15 @@ The nomenclature, and data availability, are accessible with `get_nomenclatures(
 
 Indicators are available with `get_indicator`. Tariff rates can be loaded with `get_tariff_reported` and `get_tariff_estimated`.
 
+## Working with codes rather than with category names
+
+The three functions above accept a `name_or_id` argument that defaults to `'name'`. Use `name_or_id='id'` to 
+get codes rather than full description for products and countries:
+
+```python
+wits.get_indicator('MPRT-TRD-VL', reporter='usa', year='2017', name_or_id='id')
+```
+
 ## Sample use case
 
 In the below we show how to collect and plot the Import and Export data for the USA in 2017.
