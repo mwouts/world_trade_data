@@ -6,6 +6,7 @@ import warnings
 import requests
 import pandas as pd
 import world_trade_data.defaults
+import numpy as np
 
 logging.basicConfig()
 LOGGER = logging.getLogger(__name__)
@@ -141,6 +142,6 @@ def _wits_data_to_df(data, value_name='Value', is_tariff=False, name_or_id='id')
 
     for col in table:
         if '_Rate' in col or 'Lines' in col or col == 'Value':
-            table[col] = table[col].apply(lambda s: pd.np.NaN if s == '' else float(s))
+            table[col] = table[col].apply(lambda s: np.NaN if s == '' else float(s))
 
     return table
