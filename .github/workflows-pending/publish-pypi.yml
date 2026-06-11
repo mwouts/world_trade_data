@@ -1,0 +1,42 @@
+name: Publish to PyPI
+on:
+  push:
+    tags:
+      - "v[0-9]*.[0-9]*.[0-9]*"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/world_trade_data
+    permissions:
+      id-token: write
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v5
+      - name: Setup Pixi
+        uses: prefix-dev/setup-pixi@v0.9.1
+        with:
+          pixi-version: v0.68.1
+          cache: true
+      - name: Build package
+        run: pixi run -e build python -m build
+
+      - name: Verify wheel exports
+        shell: bash
+        run: |
+          python3 -m venv .wheel-check
+          .wheel-check/bin/pip install --upgrade pip
+          .wheel-check/bin/pip install dist/world_trade_data-*.whl
+          .wheel-check/bin/python - <<'PY'
+          import world_trade_data
+
+          assert isinstance(world_trade_data.__version__, str)
+          assert hasattr(world_trade_data, "get_indicator")
+          from world_trade_data import get_indicator
+
+          assert get_indicator is world_trade_data.get_indicator
+          PY
+      - name: Publish
+        uses: pypa/gh-action-pypi-publish@release/v1
