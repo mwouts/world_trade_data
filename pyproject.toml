@@ -1,0 +1,111 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "world_trade_data"
+authors = [{name = "Marc Wouts", email = "marc.wouts@gmail.com"}]
+maintainers = [{name = "Marc Wouts", email = "marc.wouts@gmail.com"}]
+description = "World Integrated Trade Solution (WITS) API in Python"
+readme = "README.md"
+license = { file = "LICENSE" }
+keywords = ["World Bank", "WITS", "trade", "tariff"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "License :: OSI Approved :: MIT License",
+  "Environment :: Console",
+  "Framework :: Jupyter",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Education",
+  "Intended Audience :: Science/Research",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
+]
+dynamic = ["version"]
+requires-python = ">= 3.10"
+dependencies = [
+    "pandas>=2.0",
+    "requests",
+    "xmltodict",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8",
+    "pytest-cov>=5",
+    "numpy",
+    "jupytext",
+    "plotly",
+    "nbconvert",
+    "jupyter_client",
+    "ipykernel",
+]
+dev = [
+    "pre-commit>=4.0",
+    "pytest>=8",
+    "pytest-cov>=5",
+    "numpy",
+    "jupytext",
+    "plotly",
+    "nbconvert",
+    "jupyter_client",
+    "ipykernel",
+]
+
+[project.urls]
+Homepage = "https://github.com/mwouts/world_trade_data"
+Documentation = "https://mwouts.github.io/world_trade_data"
+Repository = "https://github.com/mwouts/world_trade_data.git"
+Issues = "https://github.com/mwouts/world_trade_data/issues"
+
+[tool.hatch.version]
+path = "world_trade_data/version.py"
+
+[tool.hatch.build.targets.sdist]
+only-include = ["world_trade_data", "tests"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["world_trade_data"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "except ImportError",
+]
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-64", "osx-arm64", "win-64"]
+
+[tool.pixi.pypi-dependencies]
+world_trade_data = {path = ".", extras = ["dev"], editable = true}
+
+[tool.pixi.dependencies]
+python = ">=3.10"
+python-gil = "*"
+pandas = ">=2.0"
+requests = "*"
+xmltodict = "*"
+
+[tool.pixi.feature.build.pypi-dependencies]
+build = "*"
+twine = "*"
+
+[tool.pixi.feature.build.tasks]
+# pixi run -e build publish-test
+publish-test = { depends-on = ["build-dist"], cmd = "twine upload --repository testpypi dist/*" }
+build-dist = "rm -rf dist && python -m build"
+
+[tool.pixi.feature.notebook.dependencies]
+jupyterlab = ">=4"
+
+[tool.pixi.environments]
+default = { solve-group = "default" }
+build = { features = ["build"], no-default-feature = false, solve-group = "default" }
+notebook = { features = ["notebook"], solve-group = "default" }
