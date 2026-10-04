@@ -4,6 +4,9 @@
     "dockerfile": "Dockerfile",
     "context": ".."
   },
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
   "postCreateCommand": "pixi install",
   "customizations": {
     "vscode": {
