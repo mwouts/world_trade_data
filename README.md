@@ -139,6 +139,27 @@ fig.update_layout(
 fig.show(renderer='notebook_connected')
 ```
 
+## Development
+
+Install [Pixi](https://pixi.sh/), then create the project environment with:
+
+```sh
+pixi install
+```
+
+Run the test suite and developer checks with:
+
+```sh
+pixi run test
+pixi run lint
+pixi run typecheck
+pixi run build
+```
+
+The API tests contact the live WITS service and need network access. The fixture-only data conversion tests can be run offline with `pixi run pytest tests/test_data.py -k data_to_df`.
+
+To use the VS Code development container, open the repository in a Dev Container. It installs Pixi and runs `pixi install` when created.
+
 # References & Alternatives
 
 - The official [WITS portal](https://wits.worldbank.org/) let you visualize and download trade and tariff data. And the API implemented in this package is documented [here](https://wits.worldbank.org/witsapiintro.aspx).
