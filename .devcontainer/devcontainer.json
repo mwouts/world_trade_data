@@ -9,10 +9,21 @@
     "vscode": {
       "extensions": [
         "ms-python.python",
-        "ms-pyright.pyright"
+        "ms-pyright.pyright",
+        "charliermarsh.ruff",
+        "openai.chatgpt",
+        "jjjermiah.pixi-vscode",
+        "caenrigen.jupytext-sync"
       ],
       "settings": {
-        "python.defaultInterpreterPath": "${workspaceFolder}/.pixi/envs/default/bin/python"
+        "python.defaultInterpreterPath": "${workspaceFolder}/.pixi/envs/default/bin/python",
+        "python.languageServer": "None",
+        "python.testing.pytestEnabled": true,
+        "python.testing.unittestEnabled": false,
+        "python.testing.pytestArgs": ["tests"],
+        "[python]": {
+          "editor.defaultFormatter": "charliermarsh.ruff"
+        }
       }
     }
   }
