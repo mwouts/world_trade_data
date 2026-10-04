@@ -124,11 +124,11 @@ df
 # Get Indicator
 
 ```python
-df = wits.get_indicator(reporter='usa', 
-                        year='2017', 
+df = wits.get_indicator(reporter='usa',
+                        year='2017',
                         partner='all',
                         product='all',
-                        indicator='MPRT-TRD-VL', 
+                        indicator='MPRT-TRD-VL',
                         datasource='tradestats-trade')
 df
 ```
@@ -156,5 +156,3 @@ http://wits.worldbank.org/API/V1/SDMX/V21/rest/dataflow/wbg_wits/
 http://wits.worldbank.org/API/V1/SDMX/V21/rest/codelist/all/
 
 http://wits.worldbank.org/API/V1/SDMX/V21/rest/datastructure/WBG_WITS/TARIFF_TRAINS/
-
-

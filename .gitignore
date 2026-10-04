@@ -2,6 +2,11 @@
 .idea
 *.ipynb
 .ipynb_checkpoints
+.pixi/
+.ruff_cache/
+.pytest_cache/
+.coverage
+coverage.xml
 *.egg-info
 *.pyc
 build/

@@ -1,0 +1,30 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-json
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.13
+    hooks:
+      - id: ruff-check
+        args: ["--fix", "--show-fixes"]
+      - id: ruff-format
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.21.2
+    hooks:
+      - id: pyupgrade
+        args: [--py39-plus]
+
+  - repo: local
+    hooks:
+      - id: pixi-lock
+        name: Update pixi.lock file
+        entry: pixi install
+        language: system
+        pass_filenames: false
+        files: ^(pyproject\.toml|pixi\.lock)$
