@@ -15,7 +15,7 @@
         "ms-pyright.pyright",
         "charliermarsh.ruff",
         "openai.chatgpt",
-        "jjjermiah.pixi-vscode",
+        "renan-r-santos.pixi-code",
         "caenrigen.jupytext-sync"
       ],
       "settings": {
