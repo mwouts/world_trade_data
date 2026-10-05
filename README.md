@@ -141,10 +141,12 @@ fig.show(renderer='notebook_connected')
 
 ## Development
 
+See [developping.md](developping.md) for contributor setup, dependency updates, and validation instructions.
+
 Install [Pixi](https://pixi.sh/), then create the project environment with:
 
 ```sh
-pixi install
+pixi install --locked
 ```
 
 Run the test suite and developer checks with:

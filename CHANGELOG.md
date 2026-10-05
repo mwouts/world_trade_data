@@ -3,6 +3,7 @@
 
 **Added**
 - Added Pixi, pre-commit, Pyright, and GitHub Actions workflows, including zizmor security analysis and PyPI trusted publishing.
+- Added a VS Code development container that installs the Pixi environment and configures Python, Pyright, and Ruff.
 
 **Changed**
 - Migrated package configuration to `pyproject.toml` and raised the supported Python range to 3.9-3.14.
