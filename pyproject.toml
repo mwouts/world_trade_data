@@ -1,0 +1,112 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "world-trade-data"
+dynamic = ["version"]
+description = "World Integrated Trade Solution (WITS) API in Python"
+readme = "README.md"
+license = "MIT"
+authors = [
+    { name = "Marc Wouts", email = "marc.wouts@gmail.com" },
+]
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "License :: OSI Approved :: MIT License",
+    "Environment :: Console",
+    "Framework :: Jupyter",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+dependencies = [
+    "pandas",
+    "requests",
+    "xmltodict",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+    "pytest-cov",
+    "jupytext",
+    "plotly",
+    "nbconvert",
+    "jupyter_client",
+    "ipykernel",
+]
+
+[project.urls]
+Homepage = "https://github.com/mwouts/world_trade_data"
+Source = "https://github.com/mwouts/world_trade_data"
+
+[tool.hatch.version]
+path = "world_trade_data/version.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+    "/world_trade_data",
+    "/README.md",
+    "/LICENSE",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["world_trade_data"]
+
+[tool.ruff]
+line-length = 127
+target-version = "py39"
+
+[tool.pyright]
+include = ["world_trade_data"]
+pythonVersion = "3.9"
+typeCheckingMode = "basic"
+
+[tool.coverage.run]
+omit = ["tests/*"]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "raise NotImplementedError",
+    "except ImportError",
+]
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-64", "osx-arm64", "win-64"]
+
+[tool.pixi.dependencies]
+python = ">=3.9,<3.15"
+pandas = "*"
+requests = "*"
+xmltodict = "*"
+pre-commit = "*"
+pyright = "*"
+pytest = "*"
+pytest-cov = "*"
+ruff = "*"
+jupytext = "*"
+plotly = "*"
+nbconvert = "*"
+jupyter_client = "*"
+ipykernel = "*"
+
+[tool.pixi.pypi-dependencies]
+build = "*"
+world-trade-data = { path = ".", editable = true, extras = ["test"] }
+
+[tool.pixi.tasks]
+test = "pytest"
+lint = "pre-commit run --all-files"
+typecheck = "pyright"
+build = "python -m build"

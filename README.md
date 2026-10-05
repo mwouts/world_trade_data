@@ -1,6 +1,6 @@
 # World Trade Statistics (WITS) API in Python
 
-[![Build Status](https://travis-ci.com/mwouts/world_trade_data.svg?branch=master)](https://travis-ci.com/mwouts/world_trade_data)
+[![CI](https://github.com/mwouts/world_trade_data/actions/workflows/ci.yml/badge.svg)](https://github.com/mwouts/world_trade_data/actions/workflows/ci.yml)
 [![codecov.io](https://codecov.io/github/mwouts/world_trade_data/coverage.svg?branch=master)](https://codecov.io/github/mwouts/world_trade_data?branch=master)
 [![Language grade: Python](https://img.shields.io/badge/lgtm-A+-brightgreen.svg)](https://lgtm.com/projects/g/mwouts/world_trade_data/context:python)
 [![Pypi](https://img.shields.io/pypi/v/world_trade_data.svg)](https://pypi.python.org/pypi/world_trade_data)
@@ -31,6 +31,7 @@ See the outputs of the commands below on [GitHub](https://mwouts.github.io/world
 
 ```python
 import pandas as pd
+import numpy as np
 import world_trade_data as wits
 pd.set_option('display.max_rows', 6)
 ```
@@ -60,7 +61,7 @@ Indicators are available with `get_indicator`. Tariff rates can be loaded with `
 
 ## Working with codes rather than with category names
 
-The three functions above accept a `name_or_id` argument that defaults to `'name'`. Use `name_or_id='id'` to 
+The three functions above accept a `name_or_id` argument that defaults to `'name'`. Use `name_or_id='id'` to
 get codes rather than full description for products and countries:
 
 ```python
@@ -108,7 +109,7 @@ sectors
 and make sure that we reproduce well the total:
 
 ```python
-assert pd.np.isclose(usa_imports_2017.loc[sectors].Value.sum(), usa_imports_2017.loc['All Products'].Value)
+assert np.isclose(usa_imports_2017.loc[sectors].Value.sum(), usa_imports_2017.loc['All Products'].Value)
 ```
 
 Finally we represent the data using e.g. [Plotly's Pie Charts](https://plot.ly/python/pie-charts/)
@@ -124,7 +125,7 @@ fig = make_subplots(rows=1, cols=2, specs=[[{'type':'domain'}, {'type':'domain'}
 fig.add_trace(go.Pie(labels=sectors, values=imports_musd, name="Imports"), 1, 1)
 fig.add_trace(go.Pie(labels=sectors, values=exports_musd, name="Exports"), 1, 2)
 
-fig.update_traces(hole=.4, 
+fig.update_traces(hole=.4,
                   scalegroup='usa',
                   textinfo='label',
                   hovertemplate = "%{label}<br>%{value:,.0f}M$<br>%{percent}")
@@ -137,6 +138,29 @@ fig.update_layout(
                       x=0.83, y=0.5, font_size=16, showarrow=False)])
 fig.show(renderer='notebook_connected')
 ```
+
+## Development
+
+See [developping.md](developping.md) for contributor setup, dependency updates, and validation instructions.
+
+Install [Pixi](https://pixi.sh/), then create the project environment with:
+
+```sh
+pixi install --locked
+```
+
+Run the test suite and developer checks with:
+
+```sh
+pixi run test
+pixi run lint
+pixi run typecheck
+pixi run build
+```
+
+The API tests contact the live WITS service and need network access. The fixture-only data conversion tests can be run offline with `pixi run pytest tests/test_data.py -k data_to_df`.
+
+To use the VS Code development container, open the repository in a Dev Container. It installs Pixi and runs `pixi install` when created.
 
 # References & Alternatives
 
