@@ -9,7 +9,7 @@ description = "World Integrated Trade Solution (WITS) API in Python"
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
-requires-python = ">=3.10,<3.15"
+requires-python = ">=3.10"
 classifiers = [
     "Development Status :: 3 - Alpha",
     "Framework :: Jupyter",
@@ -20,6 +20,7 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
 ]
 authors = [{ name = "Marc Wouts", email = "marc.wouts@gmail.com" }]
 dependencies = ["pandas", "requests", "xmltodict"]

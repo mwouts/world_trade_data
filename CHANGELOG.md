@@ -1,7 +1,7 @@
 0.2.0dev0 (unreleased)
 ========================
 
-- Adopt Hatchling, Pixi, Ruff pre-commit hooks, and Python 3.10–3.14 CI.
+- Adopt Hatchling, Pixi, Ruff pre-commit hooks, and Python 3.10–3.15 CI.
 - Validate installed release artifacts and publish through PyPI Trusted Publishing.
 - Separate offline tests from live API checks and execute documentation in a temporary directory.
 - Use HTTPS and a 60-second timeout for WITS requests.

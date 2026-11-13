@@ -147,7 +147,7 @@ fig.show(renderer='notebook_connected')
 
 # Development
 
-Python 3.10–3.14 is tested in CI. Install the development environment with
+Python 3.10–3.15 is tested in CI. Install the development environment with
 `pixi install --locked`, then install hooks with `pixi run pre-commit install`.
 Use `pixi run test`, `pixi run lint`, and `pixi run check-dist` to validate changes.
 After changing dependencies, run `pixi lock` and commit `pixi.lock`.

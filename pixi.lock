@@ -4674,7 +4674,7 @@ packages:
   - plotly ; extra == 'test'
   - pytest ; extra == 'test'
   - pytest-cov ; extra == 'test'
-  requires_python: '>=3.10,<3.15'
+  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/02/36/ecc85bc96c273dc8a11273ed4782272975e6338d4a3e9228621175edf0e3/jaraco_functools-4.6.0-py3-none-any.whl
   name: jaraco-functools
   version: 4.6.0
