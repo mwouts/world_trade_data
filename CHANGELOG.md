@@ -1,4 +1,5 @@
-# Unreleased
+0.2.0dev0 (unreleased)
+========================
 
 - Adopt Hatchling, Pixi, Ruff pre-commit hooks, and Python 3.10–3.14 CI.
 - Validate installed release artifacts and publish through PyPI Trusted Publishing.
