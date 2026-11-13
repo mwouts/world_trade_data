@@ -1,4 +1,4 @@
-jupyterlab>=4,<5
+jupyterlab>=4.6.6,<5
 jupytext
 plotly
 itables
