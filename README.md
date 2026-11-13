@@ -1,6 +1,7 @@
 # World Trade Statistics (WITS) API in Python
 
 [![CI](https://github.com/mwouts/world_trade_data/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/mwouts/world_trade_data/actions/workflows/continuous-integration.yml)
+[![Codecov](https://codecov.io/github/mwouts/world_trade_data/coverage.svg?branch=master)](https://codecov.io/github/mwouts/world_trade_data?branch=master)
 [![Pypi](https://img.shields.io/pypi/v/world_trade_data.svg)](https://pypi.org/project/world-trade-data/)
 [![pyversions](https://img.shields.io/pypi/pyversions/world_trade_data.svg)](https://pypi.org/project/world-trade-data/)
 [![Jupyter Notebook](https://img.shields.io/badge/Binder-Notebook-blue.svg)](

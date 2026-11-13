@@ -117,6 +117,22 @@ jobs:
           cp pyproject.toml "$RUNNER_TEMP/pyproject.toml"
           cd "$RUNNER_TEMP"
           python -m pytest tests -m 'not integration' --strict-markers --cov=world_trade_data
+  coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0 # v7.1.0
+        with:
+          python-version: '3.14'
+      - run: python -m pip install -e '.[test]'
+      - run: python -m pytest --cov=world_trade_data --cov-report=xml:coverage.xml
+      - uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7
+        with:
+          files: coverage.xml
+          disable_search: true
+          token: ${{ secrets.CODECOV_TOKEN }}
   integration:
     if: github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
