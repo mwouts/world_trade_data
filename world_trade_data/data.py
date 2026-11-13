@@ -141,6 +141,6 @@ def _wits_data_to_df(data, value_name='Value', is_tariff=False, name_or_id='id')
 
     for col in table:
         if '_Rate' in col or 'Lines' in col or col == 'Value':
-            table[col] = table[col].apply(lambda s: pd.np.NaN if s == '' else float(s))
+            table[col] = table[col].apply(lambda s: float('nan') if s == '' else float(s))
 
     return table

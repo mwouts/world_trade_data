@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "world-trade-data"
+dynamic = ["version"]
+description = "World Integrated Trade Solution (WITS) API in Python"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Marc Wouts", email = "marc.wouts@gmail.com" }]
+dependencies = ["pandas", "requests", "xmltodict"]
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-cov", "jupytext", "plotly", "nbconvert", "ipykernel"]
+dev = ["world-trade-data[test]", "build"]
+
+[project.urls]
+Homepage = "https://github.com/mwouts/world_trade_data"
+
+[tool.hatch.version]
+path = "world_trade_data/version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["world_trade_data"]
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-64", "osx-arm64", "win-64"]
+
+[tool.pixi.dependencies]
+python = ">=3.10"
+ipykernel = "*"
+jupyterlab = "*"
+pre-commit = "*"
+
+[tool.pixi.pypi-dependencies]
+world-trade-data = { path = ".", editable = true, extras = ["dev"] }

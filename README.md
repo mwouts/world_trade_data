@@ -31,6 +31,7 @@ See the outputs of the commands below on [GitHub](https://mwouts.github.io/world
 
 ```python
 import pandas as pd
+import numpy as np
 import world_trade_data as wits
 pd.set_option('display.max_rows', 6)
 ```
@@ -108,7 +109,7 @@ sectors
 and make sure that we reproduce well the total:
 
 ```python
-assert pd.np.isclose(usa_imports_2017.loc[sectors].Value.sum(), usa_imports_2017.loc['All Products'].Value)
+assert np.isclose(usa_imports_2017.loc[sectors].Value.sum(), usa_imports_2017.loc['All Products'].Value)
 ```
 
 Finally we represent the data using e.g. [Plotly's Pie Charts](https://plot.ly/python/pie-charts/)
