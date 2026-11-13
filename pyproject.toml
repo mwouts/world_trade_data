@@ -1,0 +1,75 @@
+[build-system]
+requires = ["hatchling>=1.27"]
+build-backend = "hatchling.build"
+
+[project]
+name = "world-trade-data"
+dynamic = ["version"]
+description = "World Integrated Trade Solution (WITS) API in Python"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Framework :: Jupyter",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
+]
+authors = [{ name = "Marc Wouts", email = "marc.wouts@gmail.com" }]
+dependencies = ["pandas", "requests", "xmltodict"]
+
+[project.optional-dependencies]
+test = ["pytest", "pytest-cov", "jupytext", "plotly", "nbconvert", "ipykernel", "numpy"]
+dev = ["world-trade-data[test]", "build", "twine", "pre-commit"]
+
+[project.urls]
+Homepage = "https://github.com/mwouts/world_trade_data"
+Repository = "https://github.com/mwouts/world_trade_data"
+Issues = "https://github.com/mwouts/world_trade_data/issues"
+
+[tool.hatch.version]
+path = "world_trade_data/version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["world_trade_data"]
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-64", "osx-arm64", "win-64"]
+
+[tool.pixi.dependencies]
+python = ">=3.10,<3.15"
+ipykernel = "*"
+jupyterlab = "*"
+pre-commit = "*"
+
+[tool.pixi.pypi-dependencies]
+world-trade-data = { path = ".", editable = true, extras = ["dev"] }
+
+[tool.pixi.tasks]
+test = "python -m pytest"
+test-live = "python -m pytest -m integration"
+lint = "pre-commit run --all-files"
+build = "python -m build"
+check-dist = { cmd = "python -m twine check --strict dist/*", depends-on = ["build"] }
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-m 'not integration' --strict-markers"
+markers = ["integration: calls the live WITS service (requires network access)"]
+
+[tool.coverage.run]
+source = ["world_trade_data"]
+
+[tool.ruff]
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I"]

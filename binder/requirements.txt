@@ -1,6 +1,4 @@
+jupyterlab>=4,<5
 jupytext
-world_bank_data
-world_trade_data
 plotly
 itables
-jupyter_contrib_nbextensions

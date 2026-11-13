@@ -1,13 +1,6 @@
 #!/bin/bash
 
-set -ex
+set -euxo pipefail
 
-# Extensions
-# 1. TOC
-jupyter contrib nbextension install --user
-jupyter nbextension enable toc2/main
-
-# 2. Jupytext
-jupyter serverextension enable jupytext --user
-jupyter nbextension install --py jupytext --user
-jupyter nbextension enable --py jupytext --user
+# Run the checked-out project with modern JupyterLab/Jupytext.
+python -m pip install -e .
