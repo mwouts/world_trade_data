@@ -8,3 +8,8 @@ build/
 dist/
 
 .pixi/
+
+.venv/
+.coverage
+htmlcov/
+coverage.xml

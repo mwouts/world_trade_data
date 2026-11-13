@@ -14,7 +14,7 @@
   "mounts": [
     "source=${devcontainerId}-pixi,target=${containerWorkspaceFolder}/.pixi,type=volume"
   ],
-  "postCreateCommand": "sudo chown vscode:vscode .pixi && pixi install && pixi run python -m ipykernel install --name world_trade_data --user",
+  "postCreateCommand": "sudo chown vscode:vscode .pixi && pixi install --locked && pixi run pre-commit install && pixi run python -m ipykernel install --name world_trade_data --user",
   "waitFor": "postCreateCommand",
   "remoteEnv": {
     "PATH": "${containerWorkspaceFolder}/.pixi/envs/default/bin:${containerEnv:PATH}"
@@ -26,7 +26,7 @@
     "vscode": {
       "extensions": [
         "ms-python.python",
-        "ms-pyright.pyright",
+        "-ms-pyright.pyright",
         "charliermarsh.ruff",
         "ms-toolsai.jupyter",
         "openai.chatgpt"

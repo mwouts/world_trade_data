@@ -1,10 +1,8 @@
 # World Trade Statistics (WITS) API in Python
 
-[![Build Status](https://travis-ci.com/mwouts/world_trade_data.svg?branch=master)](https://travis-ci.com/mwouts/world_trade_data)
-[![codecov.io](https://codecov.io/github/mwouts/world_trade_data/coverage.svg?branch=master)](https://codecov.io/github/mwouts/world_trade_data?branch=master)
-[![Language grade: Python](https://img.shields.io/badge/lgtm-A+-brightgreen.svg)](https://lgtm.com/projects/g/mwouts/world_trade_data/context:python)
-[![Pypi](https://img.shields.io/pypi/v/world_trade_data.svg)](https://pypi.python.org/pypi/world_trade_data)
-[![pyversions](https://img.shields.io/pypi/pyversions/world_trade_data.svg)](https://pypi.python.org/pypi/world_trade_data)
+[![CI](https://github.com/mwouts/world_trade_data/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/mwouts/world_trade_data/actions/workflows/continuous-integration.yml)
+[![Pypi](https://img.shields.io/pypi/v/world_trade_data.svg)](https://pypi.org/project/world-trade-data/)
+[![pyversions](https://img.shields.io/pypi/pyversions/world_trade_data.svg)](https://pypi.org/project/world-trade-data/)
 [![Jupyter Notebook](https://img.shields.io/badge/Binder-Notebook-blue.svg)](
     https://mybinder.org/v2/gh/mwouts/world_trade_data/master?filepath=README.md)
 [![GitHub.io](https://img.shields.io/badge/GitHub-HTML-blue.svg)](https://mwouts.github.io/world_trade_data)
@@ -61,7 +59,7 @@ Indicators are available with `get_indicator`. Tariff rates can be loaded with `
 
 ## Working with codes rather than with category names
 
-The three functions above accept a `name_or_id` argument that defaults to `'name'`. Use `name_or_id='id'` to 
+The three functions above accept a `name_or_id` argument that defaults to `'name'`. Use `name_or_id='id'` to
 get codes rather than full description for products and countries:
 
 ```python
@@ -125,7 +123,7 @@ fig = make_subplots(rows=1, cols=2, specs=[[{'type':'domain'}, {'type':'domain'}
 fig.add_trace(go.Pie(labels=sectors, values=imports_musd, name="Imports"), 1, 1)
 fig.add_trace(go.Pie(labels=sectors, values=exports_musd, name="Exports"), 1, 2)
 
-fig.update_traces(hole=.4, 
+fig.update_traces(hole=.4,
                   scalegroup='usa',
                   textinfo='label',
                   hovertemplate = "%{label}<br>%{value:,.0f}M$<br>%{percent}")
@@ -145,4 +143,32 @@ fig.show(renderer='notebook_connected')
 - The WITS data can be accessed in R with the [tradestatistics](https://tradestatistics.io/) library.
 - An alternative way to access the WITS data is to use [pandasdmx](https://pandasdmx.readthedocs.io/).
 
-<script async defer src="https://buttons.github.io/buttons.js"></script>
+
+
+# Development
+
+Python 3.10–3.14 is tested in CI. Install the development environment with
+`pixi install --locked`, then install hooks with `pixi run pre-commit install`.
+Use `pixi run test`, `pixi run lint`, and `pixi run check-dist` to validate changes.
+After changing dependencies, run `pixi lock` and commit `pixi.lock`.
+Alternatively, run `python -m pip install -e ".[dev]"` in a virtual environment.
+The lockfile hook requires Pixi on PATH.
+
+The default tests run offline. Run `pixi run test-live` to check the live WITS
+API and execute this tutorial. These integration tests require WITS availability.
+
+# Releases
+
+Update `world_trade_data/version.py` and `CHANGELOG.md`, then publish a GitHub
+release with a matching `v`-prefixed tag (for example, `v0.1.2`). The CI workflow
+checks the tag against package metadata, runs tests and hooks, builds the source
+distribution and wheel, and tests the installed wheel on every supported Python.
+Only then can the isolated publishing job upload those artifacts to PyPI using
+Trusted Publishing and digital attestations, without an API token.
+
+Before the first release, a maintainer must configure a PyPI Trusted Publisher
+for project `world-trade-data`, owner `mwouts`, repository `world_trade_data`,
+workflow `continuous-integration.yml`, and environment `pypi`. Create that GitHub
+environment with required reviewers and release tag restrictions. Publication is
+restricted to the upstream repository; forks still run validation.
+See the [PyPI setup guide](https://docs.pypi.org/trusted-publishers/adding-a-publisher/).

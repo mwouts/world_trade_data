@@ -1,14 +1,16 @@
-"""Run the README.md, and re-create the index.html if missing"""
+"""Execute the tutorial without changing tracked documentation."""
 
-import os
-from jupytext.cli import jupytext as jupytext_cli, system
+from pathlib import Path
+
+import jupytext
+import pytest
+from nbconvert.preprocessors import ExecutePreprocessor
 
 
-def test_execute_readme_and_update_index_html():
-    nb_path = os.path.dirname(os.path.abspath(__file__))
-    readme = os.path.join(nb_path, '..', 'README.md')
-    readme_ipynb = os.path.join(nb_path, '..', 'README.ipynb')
-    index = os.path.join(nb_path, '..', 'index.html')
-
-    jupytext_cli([readme, '--execute', '--to', 'ipynb'])
-    system('jupyter', 'nbconvert', '--to', 'html', readme_ipynb, '--output', index)
+@pytest.mark.integration
+def test_execute_readme(tmp_path):
+    readme = Path(__file__).resolve().parents[1] / "README.md"
+    notebook = jupytext.read(readme)
+    ExecutePreprocessor(timeout=120, kernel_name="python3").preprocess(
+        notebook, {"metadata": {"path": str(tmp_path)}}
+    )
