@@ -1,11 +1,11 @@
 # World Trade Statistics (WITS) API in Python
 
 [![CI](https://github.com/mwouts/world_trade_data/actions/workflows/continuous-integration.yml/badge.svg)](https://github.com/mwouts/world_trade_data/actions/workflows/continuous-integration.yml)
-[![Codecov](https://codecov.io/github/mwouts/world_trade_data/coverage.svg?branch=master)](https://codecov.io/github/mwouts/world_trade_data?branch=master)
+[![Codecov](https://codecov.io/github/mwouts/world_trade_data/coverage.svg?branch=main)](https://codecov.io/github/mwouts/world_trade_data?branch=main)
 [![Pypi](https://img.shields.io/pypi/v/world_trade_data.svg)](https://pypi.org/project/world-trade-data/)
 [![pyversions](https://img.shields.io/pypi/pyversions/world_trade_data.svg)](https://pypi.org/project/world-trade-data/)
 [![Jupyter Notebook](https://img.shields.io/badge/Binder-Notebook-blue.svg)](
-    https://mybinder.org/v2/gh/mwouts/world_trade_data/master?filepath=README.md)
+    https://mybinder.org/v2/gh/mwouts/world_trade_data/main?filepath=README.md)
 [![GitHub.io](https://img.shields.io/badge/GitHub-HTML-blue.svg)](https://mwouts.github.io/world_trade_data)
 <a class="github-button" href="https://github.com/mwouts/world_trade_data" data-icon="octicon-star" data-show-count="true" aria-label="Star mwouts/world_trade_data on GitHub">Star</a>
 
@@ -26,7 +26,7 @@ pip install world_trade_data --upgrade
 
 ## Get the list of countries, products, indicators
 
-See the outputs of the commands below on [GitHub](https://mwouts.github.io/world_trade_data/). Or even, open this `README.md` as a notebook and run it interactively on [Binder](https://mybinder.org/v2/gh/mwouts/world_trade_data/master?filepath=README.md)!
+See the outputs of the commands below on [GitHub](https://mwouts.github.io/world_trade_data/). Or even, open this `README.md` as a notebook and run it interactively on [Binder](https://mybinder.org/v2/gh/mwouts/world_trade_data/main?filepath=README.md)!
 
 ```python
 import pandas as pd
@@ -71,7 +71,7 @@ wits.get_indicator('MPRT-TRD-VL', reporter='usa', year='2017', name_or_id='id')
 
 In the below we show how to collect and plot the Import and Export data for the USA in 2017.
 
-![](https://raw.githubusercontent.com/mwouts/world_trade_data/master/examples/usa_2017.png)
+![](https://raw.githubusercontent.com/mwouts/world_trade_data/main/examples/usa_2017.png)
 
 To begin with, we request the values for the corresponding import and exports. Here, we use the default value for `partner='wld'`, and the default value for `product='all'`.
 
