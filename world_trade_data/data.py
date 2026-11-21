@@ -118,12 +118,17 @@ def _get_data(
     ) >= 3:
         LOGGER.warning(LIMITATIONS)
 
-    response = requests.get(
-        "https://wits.worldbank.org/API/V1/SDMX/V21/{}?format=JSON".format(
-            "/".join(list_args)
-        ),
-        timeout=60,
+    url = "https://wits.worldbank.org/API/V1/SDMX/V21/{}?format=JSON".format(
+        "/".join(list_args)
     )
+    try:
+        response = requests.get(url, timeout=60)
+    except requests.exceptions.RequestException as error:
+        # Keep the original exception type and request/response metadata.
+        message, *details = error.args or ("",)
+        context = f"While requesting {url}"
+        error.args = (f"{context}: {message}" if message else context, *details)
+        raise
     response.raise_for_status()
     data = response.json()
     df = _wits_data_to_df(data, name_or_id=name_or_id, is_tariff=is_tariff)
