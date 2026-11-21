@@ -42,6 +42,25 @@ def test_data_request(monkeypatch, is_tariff):
     assert frame.Value.dtype == "float64"
 
 
+def test_chunked_encoding_error_includes_indicator_url(monkeypatch):
+    request = requests.Request("GET", "https://wits.worldbank.org").prepare()
+    error = requests.exceptions.ChunkedEncodingError(
+        "connection reset", request=request
+    )
+    get = Mock(side_effect=error)
+    monkeypatch.setattr(requests, "get", get)
+
+    with pytest.raises(requests.exceptions.ChunkedEncodingError) as caught:
+        get_indicator("TRD-CMPLMNTRTY-NDX", "usa")
+
+    url = get.call_args.args[0]
+    assert url.startswith("https://wits.worldbank.org/")
+    assert "/indicator/TRD-CMPLMNTRTY-NDX?" in url
+    assert url in str(caught.value)
+    assert "connection reset" in str(caught.value)
+    assert caught.value.request is request
+
+
 def test_http_error(monkeypatch):
     response = Mock()
     response.raise_for_status.side_effect = requests.HTTPError("unavailable")

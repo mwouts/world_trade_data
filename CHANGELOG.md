@@ -5,6 +5,7 @@
 - Validate installed release artifacts and publish through PyPI Trusted Publishing.
 - Separate offline tests from live API checks and execute documentation in a temporary directory.
 - Use HTTPS and a 60-second timeout for WITS requests.
+- Include the WITS data request URL in connection errors ([#1](https://github.com/mwouts/world_trade_data/issues/1)).
 
 0.1.1 (2022-08-15)
 ==================
